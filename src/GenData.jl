@@ -1,9 +1,3 @@
-module GenData
-    using Random, Statistics, LinearAlgebra, Images, Gridap, Interpolations
-
-        
-    export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D    
-
 
     # This function uses white noise and filters it.
 
@@ -138,4 +132,3 @@ module GenData
     end
 
 
-end

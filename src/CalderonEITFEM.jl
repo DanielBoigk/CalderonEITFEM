@@ -4,10 +4,11 @@ module CalderonEITFEM
 
     
     # This file contains various functions to create Data suited for Conductitivity and boundary conditions. 
+    
     export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
+    
+
     include("GenData.jl")
-
-
 
     #export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
     #export interpolate_array_1D, interpolate_array_2D
