@@ -1,5 +1,6 @@
 
     # This function uses white noise and filters it.
+    export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
 
     function gen_cont_data_1D( n_elem::Int=100,σ::Float64=5.0,;is_periodic::Bool=true, mean_zero::Bool=true)
         if is_periodic
@@ -130,5 +131,4 @@
         mean_A = Statistics.mean(A)
         return (1 / mean_A) * A
     end
-
 

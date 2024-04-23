@@ -3,11 +3,7 @@ module CalderonEITFEM
     using Random, Statistics, LinearAlgebra, Images, Gridap, Interpolations
 
     
-    # This file contains various functions to create Data suited for Conductitivity and boundary conditions. 
-    
-    export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
-    
-
+    # This file contains various functions to create data suited for Conductitivity and boundary conditions. 
     include("GenData.jl")
 
     #export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
