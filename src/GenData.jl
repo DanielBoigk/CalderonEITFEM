@@ -132,3 +132,4 @@
         return (1 / mean_A) * A
     end
 
+# Add some more functions that can create some data:
