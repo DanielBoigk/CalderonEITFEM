@@ -1,7 +1,8 @@
 
-export square_to_boundary, boundary_to_square, extract_gradient
+export square_to_boundary, boundary_to_square
 
 export Gradient_to_Normal
+
 # Maybe do it such that it also can use a function as an argument. It already intercepts the error with wrong size of input array by creating a 2x2 array of smaller size.
 function boundary_to_square(boundary::Vector{Float64},n::Int=0)
     if n==0 

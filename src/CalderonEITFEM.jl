@@ -12,7 +12,7 @@ module CalderonEITFEM
 
     include("CircBoundary.jl")
 
-    inlcude("GridapFEM.jl")
+    include("GridapFEM.jl")
 
     include("GridapGradient.jl")
 
