@@ -18,6 +18,8 @@ module CalderonEITFEM
 
     include("FerriteFEM.jl")
 
+    include("CircGmsh.jl")
+
 
     #export Gradient_to_Normal, gen_EIT_training_sqr
     #export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann
