@@ -8,6 +8,10 @@ Alternatively uses Gaussian Random fields.
 
 2. Creates Rectangular/Square or circular Mesh with varying granularity.
 
-3. Calculates FEM Solution of both Dirichlet-to-Neumann and Neumann-to-Dirichlet 
+3. Calculates FEM Solution of both Dirichlet-to-Neumann and Neumann-to-Dirichlet Map
+
+4. Generates Full data set of Conductivity, Voltage, Neumann boundary (Current), dirichlet boundary(voltage). If specified will also calculate full gradient flow. 
+
+Data created is meant as training Data for Solving the inverse problem of electrical impedance tomography.
 
 
