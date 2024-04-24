@@ -1,6 +1,7 @@
 module CalderonEITFEM
 
-    using Random, Statistics, LinearAlgebra, Images, Gridap, Interpolations
+    using Random, Statistics, LinearAlgebra, Images, Interpolations
+    using Ferrite, Gridap, GridapGmsh, FerriteGmsh
 
     
     # This file contains various functions to create data suited for Conductitivity and boundary conditions. 
