@@ -3,6 +3,8 @@
 export create_circle_geo
 
 # This works with FerriteGmsh but not with GridapGmsh:
+# It works with both: 
+# But for whatever reason 
 function create_circle_geo(cellsize::Float64=0.05)
     all = 
     "cellSize = "*string(cellsize)*";
