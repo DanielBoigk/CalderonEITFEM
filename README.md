@@ -15,3 +15,4 @@ Alternatively uses Gaussian Random fields.
 Data created is meant as training Data for Solving the inverse problem of electrical impedance tomography.
 
 
+Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same environment.

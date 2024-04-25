@@ -1,8 +1,11 @@
 module CalderonEITFEM
 
     using Random, Statistics, LinearAlgebra, Images, Interpolations
-    using Ferrite, Gridap, GridapGmsh, FerriteGmsh
+    using Gridap, GridapGmsh
+    
 
+    # GridapGmsh does not work in the same enviroment with gmsh_jll.jl which FerriteGmsh unfortunately includes. Thus I need to write another module in another enviroment to have a solution run in Ferrite.
+    #using Ferrite, FerriteGmsh
     
     # This file contains various functions to create data suited for Conductitivity and boundary conditions. 
     include("GenData.jl")
@@ -17,9 +20,9 @@ module CalderonEITFEM
 
     include("GridapGradient.jl")
 
-    include("FerriteFEM.jl")
+    #include("FerriteFEM.jl")
 
-    include("CircGmsh.jl")
+    include("CircGridapGmsh.jl")
 
 
     #export Gradient_to_Normal, gen_EIT_training_sqr
