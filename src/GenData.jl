@@ -1,7 +1,21 @@
 
     # This function uses white noise and filters it.
     export gen_cont_data_1D, gen_cont_data_2D, gen_cont_data_3D
+    #export gauß_filter
 
+    function gauß_filter(A,σ_g, mode::String="circular", scipy::Bool=false)
+        if scipy == true
+            if mode == "circular"
+                scipy_mode = "wrap"
+            elseif mode =="replicate"
+                scipy_mode = "nearest"
+            end
+            return SciPy.ndimage.gaussian_filter(A, σ_g, mode =scipy_mode)
+        else
+            return imfilter(A, Kernel.gaussian(σ_g), mode)
+        end
+    end
+    
     function gen_cont_data_1D( n_elem::Int=100,σ::Float64=5.0,;is_periodic::Bool=true, mean_zero::Bool=true)
         if is_periodic
             A = randn(1, n_elem)

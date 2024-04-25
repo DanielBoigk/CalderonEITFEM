@@ -1,6 +1,6 @@
 module CalderonEITFEM
 
-    using Random, Statistics, LinearAlgebra, Images, Interpolations
+    using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
     using Gridap, GridapGmsh
     
 
