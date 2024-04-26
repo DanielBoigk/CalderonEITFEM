@@ -98,9 +98,13 @@
                 end
             end
         end
-    
-        #Scale it to useable value
-        mean_A = Statistics.mean(A)
+        if pos_only
+            #Scale it to useable value
+            mean_A = Statistics.mean(A)
+            
+        else
+            mean_A = Statistics.mean(abs.(A))
+        end
         return (1 / mean_A) * A
     end
     
@@ -200,6 +204,7 @@ function gen_discrete_data_2D(n_elem::Int=100, σ1::Float64=5.0, σ2::Float64=5.
     
     return A
 end
+
 
 function gen_single_points_1D(n_elem::Int=100, n_points::Int64=2,; mean_zero::Bool= true, use_filter= false, σ::Float64 = 5.0, mode::String = "circular")
     point_values = randn(n_points)
