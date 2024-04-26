@@ -24,12 +24,21 @@ module CalderonEITFEM
 
     include("CircGridapGmsh.jl")
 
+    include("SqrTrain.jl")
+
 
     #export Gradient_to_Normal, gen_EIT_training_sqr
     #export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann
 
-    #export FEM_data
+    export FEM_data
 
-
+    struct FEM_data 
+        γ::Array{Float64, 2} 
+        U::Array{Float64, 2}
+        boundary::Array{Float64, 1}
+        d_boundary::Array{Float64, 1}
+        n_boundary::Array{Float64, 1}
+        G::Array{Float64, 3}
+    end
     
 end
