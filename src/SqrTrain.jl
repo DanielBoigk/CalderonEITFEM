@@ -40,8 +40,10 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
         n_boundary = square_to_boundary(N)
     elseif calc_gradient == "boundary"
         println("to be implemented")
-        n_boundary=zeros(4*n-4)
-        G = zeros(n,n,2)
+        boundary_G = extract_gradient_border(u, n, n)
+        G = boundary_to_square(boundary_G)
+        N = Gradient_to_Normal(G)
+        n_boundary = square_to_boundary(N)
     else
         n_boundary=zeros(4*n-4)
         G = zeros(n,n,2)

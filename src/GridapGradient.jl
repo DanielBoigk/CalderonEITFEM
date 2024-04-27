@@ -41,3 +41,18 @@ function extract_gradient(u, x_dim::Int64=100, y_dim::Int64=100)
     G = [Grid_Gradient[x,y][i] for x in 1:x_dim, y in 1:y_dim, i in 1:2]
     return G
 end
+
+
+function extract_gradient_border(u, x_dim::Int64=100, y_dim::Int64=100)
+    # This is slow af: improve when time
+    coordinates = sqr_boundary_coordinates(x_dim,y_dim)
+    n = size(coordinates)
+    grid_points = [Point((coordinates[i][1], coordinates[i][2])) for i in 1:n]
+    grad_u= ∇(u)
+    # This is the really really bad part:
+    @time begin
+    Grid_Gradient = grad_u.(grid_points)
+    end
+    G = [Grid_Gradient[j][i] for j in 1:n, i in 1:2]
+    return G
+end
