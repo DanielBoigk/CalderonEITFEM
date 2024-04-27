@@ -83,3 +83,4 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
   end
     return Out, uh
 end
+

@@ -34,7 +34,9 @@ function extract_gradient(u, x_dim::Int64=100, y_dim::Int64=100)
     y_range = range(0.0, stop=1.0, length=y_dim)
     grid_points = [Point((x, y)) for x in x_range, y in y_range]
     grad_u= ∇(u)
+    @time begin
     Grid_Gradient = grad_u.(grid_points)
+    end
     G = [Grid_Gradient[x,y][i] for x in 1:x_dim, y in 1:y_dim, i in 1:2]
     return G
 end
