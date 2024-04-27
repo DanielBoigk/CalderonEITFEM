@@ -70,3 +70,15 @@ function Gradient_to_Normal(G::Array{Float64, 3})
     Out[n,m] = 0.5*( G[n,m,2]+G[n, m,1])
     return Out
 end
+
+
+# Will produce array with the coordinates along the square boundary.
+function sqr_boundary_coordinates(x_dim::Float64=100,y_dim::Float64=100)
+    x = ((1:x_dim) .- 1)/(x_dim - 1)
+    y = ((1:y_dim) .- 1)/(y_dim - 1)
+    x0 = result = [[x[i], 0.0] for i in 1:length(x)]
+    x1 = result = [[x[i], 1.0] for i in 1:length(x)]
+    y0 = result = [[0.0, y[i]] for i in 1:length(y)]
+    y1 = result = [[1.0, y[i]] for i in 1:length(y)]
+    return vcat(y0[1:(y_dim-1)], x1[1:(x_dim-1)], reverse(y1), reverse(x0)[2:(x_dim-1)] )
+end
