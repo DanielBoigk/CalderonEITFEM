@@ -20,11 +20,11 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
 
     # Solve FEM
     if FEM_mode == "dirichlet"
-        U,u = EIT_FEM_dirichlet_to_neumann(γ_func,b_func,n,n, order =1)
+        U,u = EIT_FEM_dirichlet_to_neumann(γ_func,b_func,n,n)
         U += B
         d_boundary = boundary 
     else
-        U,u = EIT_FEM_neumann_to_dirichlet(γ_func,b_func,n,n, order = 1)
+        U,u = EIT_FEM_neumann_to_dirichlet(γ_func,b_func,n,n)
         d_boundary = square_to_boundary(U)
     end
     
