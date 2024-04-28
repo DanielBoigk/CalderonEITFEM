@@ -16,15 +16,30 @@ Data created is meant as training Data for Solving the inverse problem of electr
 
 Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same environment.
 
+## The EIT - Forward Problem
+
+### Neumann-to-Dirichlet Map
+Given the strong formulation:
+$$\nabla\cdot(\gamma(x) * \nabla u(x)) = 0 \;\; \forall x in\Omega$$
+with neumann boundary condiction
+### Dirichlet-to-Neumann Map
 
 
 ## Example for a square domain:
 Generates random Conductivity values of a medium: 
 ![Conductivity of a medium](images/conductivity.svg)
+
 and given dirichlet boundary condition:
 
-![](images/dirichlet.svg)
+![Dirichlet Boundary](images/dirichlet.svg)
 
 calculates the Voltage U over the medium:
 
-![](images/Voltage.svg) 
+![Voltage](images/Voltage.svg) 
+
+with the option to also calculate the neumann boundary:
+
+![Neumann Boundary](images/neumann.svg)
+
+Or even the full gradient:
+
