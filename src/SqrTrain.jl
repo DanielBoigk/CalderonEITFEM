@@ -29,6 +29,7 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
     end
     
     # Extract Gradient
+    # This is still just one big abomination:
     if calc_gradient =="full"
         println("FEM solved: Now calculating Gradient")
         #This is still slow af: 
@@ -41,7 +42,10 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
     elseif calc_gradient == "boundary"
         println("to be implemented")
         boundary_G = extract_gradient_border(u, n, n)
-        G = boundary_to_square(boundary_G)
+        G = zeros(n,n,2)
+        G[:,:,1]= boundary_to_square(boundary_G[:,1])
+        G[:,:,2]= boundary_to_square(boundary_G[:,2])
+        println(size(G))
         N = Gradient_to_Normal(G)
         n_boundary = square_to_boundary(N)
     else
