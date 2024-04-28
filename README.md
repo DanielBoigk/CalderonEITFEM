@@ -17,7 +17,8 @@ Data created is meant as training Data for Solving the inverse problem of electr
 Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same environment.
 
 ## The EIT - Forward Problem
-
+Since the Electircal Impedance Problem is an Inverse Problem we have two choices given conductivity values $\gamma$ we can calculate the operator mapping from neumann boundary to dirichlet boundary or the inverse operator. 
+Given one of these Boundary operators we can start solving the inverse Problem which is Electrical Impedance Tomography.
 ### Neumann-to-Dirichlet Map
 Given the strong formulation:
 $$\nabla\cdot(\gamma  \nabla u) = 0 \;\;\forall x\in\Omega$$
@@ -57,6 +58,19 @@ with the option to also calculate the neumann boundary:
 
 Or even the full gradient:
 
-![Gradoient_x](images/Gradientx.svg)
+![Gradient_x](images/Gradientx.svg)
 
-![Gradoient_x](images/Gradienty.svg)
+![Gradient_x](images/Gradienty.svg)
+
+
+## Example Conductivity Data generated:
+
+Other Methods to produce random conductivity:
+
+a version with just two different values.
+
+![](images/2color.svg)
+
+or a combination thereof:
+
+![](images/Combined.svg)

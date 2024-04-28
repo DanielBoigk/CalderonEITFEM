@@ -85,3 +85,40 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
     return Out, uh
 end
 
+function EIT_FEM_dirichlet_to_neumann_circle(σ_function,j_function)
+
+  @time begin
+    # Once known define this correctly:
+    domain = (-1.0, 1.0, -1.0, 1.0)
+
+    #Later: test if circle.msh already exists. If not run:
+    #run(`gmsh -2 circle.geo -o circle.msh`)  
+    model = GmshDiscreteModel("circle.msh")
+    reffe = ReferenceFE(lagrangian, Float64, 1)
+    V = TestFESpace(model, reffe, conformity=:H1, dirichlet_tags="boundary")
+    U = TrialFESpace(V, j_function) 
+
+    #Define Triangulation:
+    Ω = Triangulation(model)
+    dΩ = Measure(Ω,2)
+
+    # Weak problem:
+    a(u, v) = ∫( σ_function * ∇(v) ⋅ ∇(u) )dΩ
+    l(v) =  0 
+    
+    # And Solve
+    op = AffineFEOperator(a,l,U,V)
+  end
+  @time begin
+    uh = solve(op)
+  end
+  @time begin
+    # Extract Matrix Valued solution:
+    Out = zeros(x_dim,y_dim)
+    S = uh.free_values
+    
+    S = reshape(uh.free_values, (x_dim-2,y_dim-2))
+    Out[2:x_dim-1,2:x_dim-1]=S
+  end
+    return Out, uh
+end

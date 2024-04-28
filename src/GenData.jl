@@ -4,6 +4,7 @@
     export gauß_filter
     export gen_discrete_data_2D, gen_single_points_1D
 
+    export combine_cont_dicrete_2D
     # Scipy's filter seems to be better. Images.jl has this annoying gridlike anomalies:
     function gauß_filter(A,σ_g, mode::String="circular", scipy::Bool=false)
         if scipy == true
@@ -171,7 +172,7 @@
 
 #The discrete case:
 
-function gen_discrete_data_2D(n_elem::Int=100, σ1::Float64=5.0, σ2::Float64=5.0,; pos_only::Bool=true, mode::String="abs", threshold::Float64=0.0, is_periodic::Bool=false, set_one_zero::Bool=false, use_scipy::Bool=false)
+function gen_discrete_data_2D(n_elem::Int=100, σ1::Float64=5.0, σ2::Float64=5.0,; pos_only::Bool=true, mode::String="abs", threshold::Float64=0.0, is_periodic::Bool=false, set_one_zero::Bool=false, use_scipy::Bool=true)
     if set_one_zero
         a = 0
         b = randn()
@@ -221,6 +222,25 @@ function gen_single_points_1D(n_elem::Int=100, n_points::Int64=2,; mean_zero::Bo
             A = SciPy.ndimage.gaussian_filter1d(A, σ, mode= "wrap")
         else
             A = SciPy.ndimage.gaussian_filter1d(A, σ, mode= "constant")
+        end
+    end
+    return A
+end
+
+
+
+# This function combines data 
+function combine_cont_dicrete_2D(D::Array{Float64,2},C1::Array{Float64,2},C2::Array{Float64,2}, is_zero::Bool = false, ensure_positive = false)
+    A = copy(D)
+    values = unique(A)
+    values = sort(values)
+    if is_zero
+        for i in eachindex(A)
+            A[i] = A[i] == 0.0 ? A[i]+C1[i] : A[i]+C2[i]
+        end
+    else
+        for i in eachindex(A)
+            A[i] = A[i] == values[1] ? A[i]+C1[i] : A[i]+C2[i]
         end
     end
     return A
