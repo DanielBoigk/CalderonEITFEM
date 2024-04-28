@@ -15,3 +15,16 @@ Creates Training Data for Calderon/EIT Problem using FEM-solver.
 Data created is meant as training Data for Solving the inverse problem of electrical impedance tomography.
 
 Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same environment.
+
+
+
+## Example for a square domain:
+Generates random Conductivity values of a medium: 
+![Conductivity of a medium](images/conductivity.svg)
+and given dirichlet boundary condition:
+
+![](images/dirichlet.svg)
+
+calculates the Voltage U over the medium:
+
+![](images/Voltage.svg) 
