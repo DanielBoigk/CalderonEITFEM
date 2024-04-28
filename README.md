@@ -20,9 +20,23 @@ Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same 
 
 ### Neumann-to-Dirichlet Map
 Given the strong formulation:
-$$\nabla\cdot(\gamma(x) * \nabla u(x)) = 0 \;\; \forall x in\Omega$$
+$$\nabla\cdot(\gamma  \nabla u) = 0 \;\;\forall x\in\Omega$$
 with neumann boundary condiction
+$$\frac{\partial u(x)}{\partial \Vec{n}(x)} = g(x) \;\; x\in \partial \Omega $$
+with the constraint:
+$$ \int\limits_{\partial\Omega} g(x) d\mathcal{S} =0 $$
+
+The weak solution thus becomes: 
+
+$$ \int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = \int\limits_{\partial\Omega} v d\mathcal{S} $$
 ### Dirichlet-to-Neumann Map
+Here the strong formulation is:
+$$\nabla \cdot (\gamma(x) \nabla u(x)) =0 \;\; \forall x \in \Omega $$
+with dirichlet boundary condition:
+$$u(x) = g(x) \;\; x\in \partial \Omega \;\; \forall x \in \\partial\Omega$$
+
+The Weak form then becomes: 
+$$ \int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = 0 \;\; \forall v \in\H^{\frac{1}{2}}(\Omega) $$
 
 
 ## Example for a square domain:
@@ -43,3 +57,6 @@ with the option to also calculate the neumann boundary:
 
 Or even the full gradient:
 
+![Gradoient_x](images/Gradientx.svg)
+
+![Gradoient_x](images/Gradienty.svg)
