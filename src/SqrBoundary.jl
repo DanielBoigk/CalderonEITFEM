@@ -1,7 +1,7 @@
 
 export square_to_boundary, boundary_to_square
 
-export Gradient_to_Normal
+export Gradient_to_Normal, sqr_boundary_coordinates
 
 # Maybe do it such that it also can use a function as an argument. It already intercepts the error with wrong size of input array by creating a 2x2 array of smaller size.
 function boundary_to_square(boundary::Vector{Float64},n::Int=0)
@@ -73,7 +73,7 @@ end
 
 
 # Will produce array with the coordinates along the square boundary.
-function sqr_boundary_coordinates(x_dim::Float64=100,y_dim::Float64=100)
+function sqr_boundary_coordinates(x_dim::Int64=100,y_dim::Int64=100)
     x = ((1:x_dim) .- 1)/(x_dim - 1)
     y = ((1:y_dim) .- 1)/(y_dim - 1)
     x0 = result = [[x[i], 0.0] for i in 1:length(x)]

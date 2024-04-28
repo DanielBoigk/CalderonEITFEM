@@ -3,7 +3,7 @@
 
 #export Gradient_to_Normal #, gen_EIT_training_sqr
 
-export extract_gradient
+export extract_gradient, extract_gradient_border
 #=
 function Gradient_to_Normal(G::Array{Float64, 3})
     n = size(G)[1]
@@ -46,7 +46,7 @@ end
 function extract_gradient_border(u, x_dim::Int64=100, y_dim::Int64=100)
     # This is slow af: improve when time
     coordinates = sqr_boundary_coordinates(x_dim,y_dim)
-    n = size(coordinates)
+    n = size(coordinates)[1]
     grid_points = [Point((coordinates[i][1], coordinates[i][2])) for i in 1:n]
     grad_u= ∇(u)
     # This is the really really bad part:
