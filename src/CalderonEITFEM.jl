@@ -3,6 +3,9 @@ module CalderonEITFEM
     using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
     using Gridap, GridapGmsh
     
+    #Since I need to call some python functions:
+    using PyCall
+    const mymodule = pyimport("CalderonFEM")
 
     # GridapGmsh does not work in the same enviroment with gmsh_jll.jl which FerriteGmsh unfortunately includes. Thus I need to write another module in another enviroment to have a solution run in Ferrite.
     #using Ferrite, FerriteGmsh
