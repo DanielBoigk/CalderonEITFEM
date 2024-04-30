@@ -22,11 +22,11 @@ Line Loop(10) = {6, 7, 8, 9};
 Plane Surface(11) = {10};
 
 // Mark the boundary of the circular mesh
-Physical Line("Boundary") = {6, 7, 8, 9};
-// Now also add points to the same "Boundary" physical group
-Physical Point("Boundary") = {2, 3, 4, 5};
+Physical Line(\"Boundary\") = {6, 7, 8, 9};
+// Now also add points to the same \"Boundary\" physical group
+Physical Point(\"Boundary\") = {2, 3, 4, 5};
 
-Physical Surface("Disk") = {11};
+Physical Surface(\"Disk\") = {11};
 // Mesh generation commands (if needed)
 Mesh 2;"
 

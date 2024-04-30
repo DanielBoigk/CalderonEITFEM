@@ -1,7 +1,7 @@
 # Write functions that access boundary values of a circle.
 
 export get_mesh_coordinates
-
+export extract_gradient_circle
 MeshIO = pyimport("meshio")    
 np = pyimport("numpy")
 
@@ -33,5 +33,13 @@ function get_mesh_coordinates()
     #Extract Boundary Values#
     boundary = rows_with_norm_close_to_one(julia_points, tol=0.00001)
     free_values = rows_with_norm_not_close_to_one(julia_points, tol=0.00001)
-    return boundary, free_values
+    return boundary, free_values, julia_points
+end
+
+function extract_gradient_circle(uh, Allpoints)
+    grad_u = ∇(uh)
+    grid_points = [Point(Allpoints[i]) for i in 1:size(Allpoints,1)]
+
+    Grid_Gradient = grad_u.(grid_points)
+    return Grid_Gradient
 end
