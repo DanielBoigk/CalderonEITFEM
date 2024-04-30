@@ -5,7 +5,8 @@ module CalderonEITFEM
     
     #Since I need to call some python functions:
     using PyCall
-    const mymodule = pyimport("CalderonFEM")
+    #const mymodule = pyimport("../python/CalderonFEM.py")
+    const MeshIO = pyimport("meshio")
 
     # GridapGmsh does not work in the same enviroment with gmsh_jll.jl which FerriteGmsh unfortunately includes. Thus I need to write another module in another enviroment to have a solution run in Ferrite.
     #using Ferrite, FerriteGmsh
