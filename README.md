@@ -23,7 +23,7 @@ Given one of these Boundary operators we can start solving the inverse Problem w
 Given the strong formulation:
 $$\nabla\cdot(\gamma  \nabla u) = 0 \;\;\forall x\in\Omega$$
 with neumann boundary condiction
-$$\frac{\partial u(x)}{\partial \Vec{n}(x)} = g(x) \;\; x\in \partial \Omega $$
+$$\frac{\partial u(x)}{\partial \vec{n}(x)} = g(x) \;\; x\in \partial \Omega $$
 with the constraint:
 $$ \int\limits_{\partial\Omega} g(x) d\mathcal{S} =0 $$
 
