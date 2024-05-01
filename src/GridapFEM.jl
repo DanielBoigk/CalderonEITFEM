@@ -86,7 +86,7 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
     return Out, uh
 end
 
-function EIT_FEM_dirichlet_to_neumann_circle(σ_function,j_function)
+function EIT_FEM_dirichlet_to_neumann_circ(σ_function,j_function)
 
   @time begin
     # Once known define this correctly:
@@ -116,7 +116,7 @@ function EIT_FEM_dirichlet_to_neumann_circle(σ_function,j_function)
   return uh
 end
 
-function EIT_FEM_neumann_to_dirichlet(σ_function,j_function)
+function EIT_FEM_neumann_to_dirichlet_circ(σ_function,j_function)
 
   @time begin
      # Once known define this correctly:
