@@ -2,8 +2,7 @@
 
 export get_mesh_coordinates
 export extract_gradient_circle
-MeshIO = pyimport("meshio")    
-np = pyimport("numpy")
+
 
 
 function rows_with_norm_close_to_one(matrix; tol=1e-5)
@@ -51,7 +50,7 @@ end
 
 function extract_gradient_circle(uh, Allpoints)
     grad_u = ∇(uh)
-    grid_points = [Point(Allpoints[i]) for i in 1:size(Allpoints,1)]
+    grid_points = [Point((Allpoints[i][1],Point(Allpoints[i][2])) for i in 1:size(Allpoints,1)]
 
     Grid_Gradient = grad_u.(grid_points)
     return Grid_Gradient
