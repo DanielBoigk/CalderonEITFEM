@@ -47,10 +47,10 @@ function get_mesh_coordinates()
     
     return boundary, free_values, julia_points
 end
-
+#This doesn't work quite because Gridap has a particular function still not implemented:
 function extract_gradient_circle(uh, Allpoints)
     grad_u = ∇(uh)
-    grid_points = [Point((Allpoints[i][1],Point(Allpoints[i][2])) for i in 1:size(Allpoints,1)]
+    grid_points = [Point(Allpoints[i]) for i in 1:size(Allpoints,1)]
 
     Grid_Gradient = grad_u.(grid_points)
     return Grid_Gradient
