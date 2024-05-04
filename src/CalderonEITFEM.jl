@@ -16,7 +16,7 @@ module CalderonEITFEM
     # This file contains various functions to create data suited for Conductitivity and boundary conditions. 
     include("GenData.jl")
     
-    include("interpolate.jl")
+    include("InterpolateFuncs.jl")
 
     include("SqrBoundary.jl")
 
@@ -28,7 +28,7 @@ module CalderonEITFEM
 
     #include("FerriteFEM.jl")
 
-    include("CircGridapGmsh.jl")
+    include("CreateGeoGmsh.jl")
 
     include("SqrTrain.jl")
 

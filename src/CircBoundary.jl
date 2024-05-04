@@ -73,3 +73,4 @@ function VectorGradient_to_Array(A)
     G = [A[j][i] for j in 1:size(A,1), i in 1:2]
     return G
 end
+
