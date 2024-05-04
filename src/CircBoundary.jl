@@ -57,3 +57,19 @@ function extract_gradient_circle(uh, Allpoints)
     Grid_Gradient = grad_u(grid_points)
     return Grid_Gradient
 end
+
+
+# Implement function that extracts value normal to gradient.
+function normalize_gradient(point::Vector{Float64}, gradient::Vector{Float64})
+    abs = norm(point)
+    return (1/abs)*dot(point, gradient)
+end
+#Does the same just with an entire Array
+function normalize_gradient(point::Array{Float64,2}, gradient::Array{Float64,2})
+    [ normalize_gradient(point[i,:], gradient[i,:]) for i in 1:size(point,1)]
+end
+
+function VectorGradient_to_Array(A)
+    G = [A[j][i] for j in 1:size(A,1), i in 1:2]
+    return G
+end

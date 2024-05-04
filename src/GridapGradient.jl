@@ -56,3 +56,10 @@ function extract_gradient_border(u, x_dim::Int64=100, y_dim::Int64=100)
     G = [Grid_Gradient[j][i] for j in 1:n, i in 1:2]
     return G
 end
+
+function extract_gradient(uh, points)
+    grad_u = ∇(uh)
+    grid_points = [Point( (points[i,1], points[i,2])) for i in 1:size(points,1)]
+    Grid_Gradient = grad_u(grid_points)
+    return Grid_Gradient
+end
