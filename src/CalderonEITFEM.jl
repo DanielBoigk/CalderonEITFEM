@@ -3,6 +3,7 @@ module CalderonEITFEM
     using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
     using Gridap, GridapGmsh
     
+    
     #Since I need to call some python functions:
     using PyCall
     #const mymodule = pyimport("../python/CalderonFEM.py")
@@ -26,12 +27,16 @@ module CalderonEITFEM
 
     include("GridapGradient.jl")
 
-    #include("FerriteFEM.jl")
-
     include("CreateGeoGmsh.jl")
 
     include("SqrTrain.jl")
 
+    try
+        using Ferrite, FerriteGmsh, SparseArrays
+        include("FerriteFEM.jl")
+    catch
+        println("Ferrite not installed in environment")
+    end
 
     #export Gradient_to_Normal, gen_EIT_training_sqr
     #export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann

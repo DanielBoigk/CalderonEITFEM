@@ -62,3 +62,5 @@ function interpolate_circle_boundary(data::Vector{Float64})
     func = interpolate_array_1D(data, true)
     return x -> func( atan(x[2],x[1])  /(2*π) + 0.5)
 end
+
+# This is a bunch of functions that together do the same for 

@@ -2,7 +2,9 @@
 
 export get_mesh_coordinates
 export extract_gradient_circle
+export VectorGradient_to_Array
 
+export normalize_gradient, NORMALIZE_GRADIENT
 
 
 function rows_with_norm_close_to_one(matrix; tol=1e-5)
@@ -25,8 +27,8 @@ function rows_with_norm_not_close_to_one(matrix; tol=1e-5)
     return B
 end
 
-function get_mesh_coordinates()
-    mesh = MeshIO.read("circle.msh")  
+function get_mesh_coordinates(file_name::String = "circle.msh")
+    mesh = MeshIO.read(file_name)  
     #=try
         mesh = MeshIO.read("circle.msh")    
     catch
@@ -65,7 +67,7 @@ function normalize_gradient(point::Vector{Float64}, gradient::Vector{Float64})
     return (1/abs)*dot(point, gradient)
 end
 #Does the same just with an entire Array
-function normalize_gradient(point::Array{Float64,2}, gradient::Array{Float64,2})
+function NORMALIZE_GRADIENT(point::Array{Float64,2}, gradient::Array{Float64,2})
     [ normalize_gradient(point[i,:], gradient[i,:]) for i in 1:size(point,1)]
 end
 
