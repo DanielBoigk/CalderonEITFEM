@@ -76,3 +76,17 @@ function VectorGradient_to_Array(A)
     return G
 end
 
+function correct_order_circle(InArray)
+    OutArray = copy(InArray)
+    n = size(InArray,1)
+    b = round(Int,n/4) 
+    println(b)
+    OutArray[2:b] = InArray[5:b+3]
+    OutArray[b+1] = InArray[2]
+    OutArray[b+2:2*b] = InArray[b+4:2*b+2]
+    OutArray[2*b+1] = InArray[3]
+    OutArray[2*b+2:3*b] = InArray[2*b+3:3*b+1]
+    OutArray[3*b+1] = InArray[4]
+
+    return OutArray
+end
