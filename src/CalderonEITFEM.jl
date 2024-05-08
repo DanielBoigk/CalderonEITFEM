@@ -1,7 +1,7 @@
 module CalderonEITFEM
 
     using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
-    using Gridap, GridapGmsh
+    using Gridap, GridapGmsh, ForwardDiff
     
     
     #Since I need to call some python functions:
