@@ -1,5 +1,26 @@
 export gen_EIT_training_sqr
 
+function extract_U_square(uh,x_dim::Int64=100,y_dim::Int64=100, ; mode = "dirichlet", l_order::Int64=1 )
+    if l_order==1
+        if l_mode == "dirichlet"
+            S = copy(uh.free_values)
+            #I don't want this thing to be somewhere completely outside:
+            S .-= Statistics.mean(S)
+            S = reshape(S, (x_dim,y_dim))
+            end
+            return S
+        else
+            # Extract Matrix Valued solution:
+            Out = zeros(x_dim,y_dim)
+            S = copy(uh.free_values)
+    
+            S = reshape(S, (x_dim-2,y_dim-2))
+            Out[2:x_dim-1,2:x_dim-1]= S
+        return Out
+        end
+    end
+    return S
+end
 
 #I'm gonna throw this solution overboard.
 # This is the function which calculates everything
@@ -20,11 +41,13 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
 
     # Solve FEM
     if FEM_mode == "dirichlet"
-        U,u = EIT_FEM_dirichlet_to_neumann(γ_func,b_func,n,n, order = lagrange_order)
+        u = EIT_FEM_dirichlet_to_neumann(γ_func,b_func,n,n, order = lagrange_order)
+        U = extract_U_square(u,n,n, l_mode="dirichlet")
         U += B
         d_boundary = boundary 
     else
-        U,u = EIT_FEM_neumann_to_dirichlet(γ_func,b_func,n,n, order = lagrange_order)
+        u = EIT_FEM_neumann_to_dirichlet(γ_func,b_func,n,n, order = lagrange_order)
+        U = extract_U_square(u,n,n)
         d_boundary = square_to_boundary(U)
     end
     
