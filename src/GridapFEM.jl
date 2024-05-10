@@ -5,7 +5,7 @@ export EIT_FEM_neumann_to_dirichlet_circ, EIT_FEM_dirichlet_to_neumann_circ
 
 
 # Receives two mxn Matrices with on describing σ on the domain and the other one describing the neumann boundary condition 
-function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, y_dim::Int64=100,; order::Int64=1, degree::Int64 = 2)
+function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, y_dim::Int64=100,; order::Int64=1, solver = LUSolver())
     @time begin
     # Once known define this correctly:
     domain = (0.0, 1.0, 0.0, 1.0)  # Define your domain
@@ -20,9 +20,9 @@ function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, 
 
     #Define Triangulation:
     Ω = Triangulation(model)
-    dΩ = Measure(Ω,degree)
+    dΩ = Measure(Ω,2)
     Γ = BoundaryTriangulation(model)
-    dΓ = Measure(Γ,degree) 
+    dΓ = Measure(Γ,2) 
 
     # Weak problem:
     a(u, v) = ∫( σ_function * ∇(v) ⋅ ∇(u) )dΩ
@@ -34,6 +34,8 @@ function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, 
     @time begin
     uh = solve(op)
     end
+    return uh
+    #=
     @time begin
     # Extract Matrix Valued solution:
     S = uh.free_values
@@ -43,10 +45,11 @@ function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, 
     
     end
     return S, uh
+    =#
 end
 
 
-function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, y_dim::Int64=100,; order::Int64=1, degree::Int64 = 2)
+function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, y_dim::Int64=100,; order::Int64=1)
   @time begin
     # Once known define this correctly:
     domain = (0.0, 1.0, 0.0, 1.0)  # Define your domain
@@ -61,7 +64,7 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
 
     #Define Triangulation:
     Ω = Triangulation(model)
-    dΩ = Measure(Ω,degree)
+    dΩ = Measure(Ω,2)
 
     # Weak problem:
     a(u, v) = ∫( σ_function * ∇(v) ⋅ ∇(u) )dΩ
@@ -73,7 +76,8 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
   @time begin
     uh = solve(op)
   end
-  @time begin
+  return uh
+  #=@time begin
     # Extract Matrix Valued solution:
     Out = zeros(x_dim,y_dim)
     S = uh.free_values
@@ -82,9 +86,10 @@ function EIT_FEM_dirichlet_to_neumann(σ_function,j_function, x_dim::Int64=100, 
     Out[2:x_dim-1,2:x_dim-1]=S
   end
     return Out, uh
+    =#
 end
 
-function EIT_FEM_dirichlet_to_neumann_circ(σ_function,j_function)
+function EIT_FEM_dirichlet_to_neumann_circ(σ_function,j_function,; order::Int64=1)
   @time begin
     # Once known define this correctly:
     domain = (-1.0, 1.0, -1.0, 1.0)
@@ -113,7 +118,7 @@ function EIT_FEM_dirichlet_to_neumann_circ(σ_function,j_function)
   return uh
 end
 
-function EIT_FEM_neumann_to_dirichlet_circ(σ_function,j_function)
+function EIT_FEM_neumann_to_dirichlet_circ(σ_function,j_function,; order::Int64=1)
   @time begin
      # Once known define this correctly:
      domain = (-1.0, 1.0, -1.0, 1.0)
