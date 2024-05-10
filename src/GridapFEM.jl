@@ -30,9 +30,12 @@ function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, 
     
     # And Solve
     op = AffineFEOperator(a,l,U,V)
+    ls= LinearFESolver(solver)  
     end
+
     @time begin
-    uh = solve(op)
+
+    uh = solve(ls,op)
     end
     return uh
     #=
