@@ -24,18 +24,28 @@ function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, 
     Γ = BoundaryTriangulation(model)
     dΓ = Measure(Γ,2) 
 
-    # Weak problem:
+    # Weak problem, Linear:
     a(u, v) = ∫( σ_function * ∇(v) ⋅ ∇(u) )dΩ
     l(v) = ∫( j_function * v )dΓ  # Neumann condition
     
     # And Solve
     op = AffineFEOperator(a,l,U,V)
+    #op = FEOperator(a,l,U,V)
     ls= LinearFESolver(solver)  
+    #nls = NLSolver(show_trace=true, method=:newton, linesearch=BackTracking())
+    #nsolver = FESolver(nls)
+    #nonlinear now:
+    #res(u,v) = ∫(  γ * ∇(v) ⋅ ∇(u) )dΩ -  ∫( g * v )dΓ
+    #jac(u,du,v) =  ∫(  γ * ∇(v) ⋅ ∇(du) )dΩ  
+    #nsolver = NLSolver(show_trace=true, method=:newton, #linesearch=BackTracking())
+    #op = FEOperator(res,jac,U,V)
+    #nls = FESolver(nsolver)
+    #uh= solve(nls, op)
     end
 
     @time begin
-
     uh = solve(ls,op)
+    #uh, ph = solve(nsolver,op)
     end
     return uh
     #=

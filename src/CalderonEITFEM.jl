@@ -2,7 +2,7 @@ module CalderonEITFEM
 
     using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
     using Gridap, GridapGmsh, ForwardDiff
-    
+    using LineSearches: BackTracking
     
     #Since I need to call some python functions:
     using PyCall

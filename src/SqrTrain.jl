@@ -1,4 +1,17 @@
 export gen_EIT_training_sqr
+export extract_U_square
+
+function extract_U(uh, x_dim::Int64=100, y_dim::Int64=100)
+    x_range = range(0.0, stop=1.0, length=x_dim)
+    y_range = range(0.0, stop=1.0, length=y_dim)
+    grid_points = [Point((x, y)) for x in x_range, y in y_range]
+    # This is the really really bad part:
+    @time begin
+    Grid_U = uh.(grid_points)
+    end
+    G = [Grid_U[x,y] for x in 1:x_dim, y in 1:y_dim]
+    return G
+end
 
 function extract_U_square(uh,x_dim::Int64=100,y_dim::Int64=100, ; mode = "dirichlet", l_order::Int64=1 )
     if l_order==1
@@ -18,6 +31,7 @@ function extract_U_square(uh,x_dim::Int64=100,y_dim::Int64=100, ; mode = "dirich
         return Out
         end
     end
+    return extract_U(uh,x_dim,y_dim)
 end
 
 #I'm gonna throw this solution overboard.
@@ -40,12 +54,14 @@ function gen_EIT_training_sqr(n::Int64=100, σ_b::Float64=10.0, σ_γ::Float64=5
     # Solve FEM
     if FEM_mode == "dirichlet"
         u = EIT_FEM_dirichlet_to_neumann(γ_func,b_func,n,n, order = lagrange_order)
-        U = extract_U_square(u,n,n, mode="dirichlet")
-        U += B
+        U = extract_U_square(u,n,n, mode="dirichlet", l_order= lagrange_order)
+        if lagrange_order == 1
+            U += B
+        end
         d_boundary = boundary 
     else
         u = EIT_FEM_neumann_to_dirichlet(γ_func,b_func,n,n, order = lagrange_order)
-        U = extract_U_square(u,n,n)
+        U = extract_U_square(u,n,n, l_order= lagrange_order)
         d_boundary = square_to_boundary(U)
     end
     
