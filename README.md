@@ -105,15 +105,45 @@ or a combination thereof:
 
 1. Have a systemwide install of gmsh, for example via:
 
+
+
+<blockquote>
+
+```bash
+sudo pacman -Syu gmsh
+```
+
+</blockquote>
+
+
 2. Open a virtual env for Python
 
 install requirements.txt ()
 
 3. Start a virtual env for Julia:
 
-install
+install all dependencies in the Venv
 
-add 
+add module via
+
+
+<blockquote>
+
+```Julia
+using Pkg
+Pkg.activate("/Path/to/Julia/Venv)
+Pkg.instantiate()
+ENV["PYTHON"] = "/home/.../path/to/python/venv"
+Pkg.build("PyCall")
+
+#Then do:
+include("CalderonEITFEM/src/CalderonEITFEM.jl")
+using .CalderonEITFEM
+
+```
+
+</blockquote>
+
 
 Do not install gmsh_jll or FerriteGmsh, as this will break GridapGmsh ( as of 02nd May 2024)
 
