@@ -1,13 +1,13 @@
 module CalderonEITFEM
 
-    using Random, Statistics, LinearAlgebra, Images, Interpolations, SciPy
+    using Random, Statistics, LinearAlgebra, Images, Interpolations
     using Gridap, GridapGmsh, ForwardDiff
     using LineSearches: BackTracking
     
     #Since I need to call some python functions:
     using PyCall
     #const mymodule = pyimport("../python/CalderonFEM.py")
-    
+    using SciPy
     const MeshIO = pyimport("meshio")    
     const np = pyimport("numpy")
 
@@ -15,21 +15,21 @@ module CalderonEITFEM
     #using Ferrite, FerriteGmsh
     
     # This file contains various functions to create data suited for Conductitivity and boundary conditions. 
-    include("GenData.jl")
+    include("GenerateData/GenerateData.jl")
     
-    include("InterpolateFuncs.jl")
+    include("Interpolation/Interpolation.jl")
 
-    include("SqrBoundary.jl")
+    #include("Boundary/SqrBoundary.jl")
 
-    include("CircBoundary.jl")
+    #include("Boundary/CircBoundary.jl")
 
-    include("GridapFEM.jl")
+    #include("FEMGridap/GridapFEM.jl")
 
-    include("GridapGradient.jl")
+    #include("FEMGridap/GridapGradient.jl")
 
-    include("CreateGeoGmsh.jl")
+    #include("CreateGeoGmsh.jl")
 
-    include("SqrTrain.jl")
+    #include("SqrTrain.jl")
 
     try
         using Ferrite, FerriteGmsh, SparseArrays
