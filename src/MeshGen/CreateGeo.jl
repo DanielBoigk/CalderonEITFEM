@@ -1,4 +1,4 @@
-function create_circle_geo(cellsize::Float64=0.05)
+function create_circle_geo(cellsize::Float64=0.02)
     all = 
 "cellSize = "*string(cellsize)*";
 radius = 1;
@@ -29,9 +29,15 @@ Mesh 2;"
     run(`gmsh -2 circle.geo -o circle.msh`)  
 end
 
-function create_square_geo(cellsize::Float64=0.05)
+function create_square_geo(cellsize::Float64=0.02)
+    
+    
+    divisions = floor(Int64,2/cellsize)+1
+
     all = 
 "cellSize = "*string(cellsize)*";;
+NumberOfDivisions = "*string(divisions)*";
+
 radius = 1;
 Point(1) = {0, 0, 0, cellSize};    // Center point
 Point(2) = {-radius, -radius, 0, cellSize};  // Bottom left
@@ -44,11 +50,7 @@ Line(7) = {3, 4};  // Top edge
 Line(8) = {4, 5};  // Right edge
 Line(9) = {5, 2};  // Bottom edge
 
-Line Loop(10) = {6, 7, 8, 9};  // Loop around the square
-Plane Surface(11) = {10};  // Define the square surface
-
-// Define Transfinite Lines with a specified number of divisions
-Transfinite Line {6, 7, 8, 9} = 10 Using Progression 1; 
+Transfinite Line {6, 7, 8, 9} = NumberOfDivisions Using Progression 1; 
 
 // Define the surface as a Transfinite Surface
 Transfinite Surface {11};
