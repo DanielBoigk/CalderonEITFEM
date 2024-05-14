@@ -19,8 +19,9 @@ module CalderonEITFEM
     
     include("Interpolation/Interpolation.jl")
 
-    #include("Boundary/SqrBoundary.jl")
+    include("Boundary/SqrBoundary.jl")
 
+    include("MeshGen/CreateGeo.jl ")
     #include("Boundary/CircBoundary.jl")
 
     #include("FEMGridap/GridapFEM.jl")
