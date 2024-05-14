@@ -1,0 +1,1 @@
+# Special Functions just to extract the correct Neumann boundary out of a square solution.
