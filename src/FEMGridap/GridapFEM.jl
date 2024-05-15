@@ -5,8 +5,8 @@
 
 include("Dirichlet-to-Neumann.jl")
 include("Neumann-to-Dirichlet.jl")
-include("ExtractUSquare.jl")
-include("ExtractGradientSquare.jl")
+include("Square/ExtractUSquare.jl")
+include("Square/ExtractGradientSquare.jl")
 
 
 #=

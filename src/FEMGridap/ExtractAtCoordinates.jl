@@ -1,9 +1,9 @@
 
-
+export extract_at_coordinates
 
 function extract_at_coordinates(u, coordinates, extract_gradient::Bool =false)
 
-    grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in eachindex(coordinates)]
+    grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in 1:n]
     
     if extract_gradient
         grad_u= ∇(u)
