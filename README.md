@@ -101,6 +101,7 @@ or a combination thereof:
 
 ![](images/Combined.svg)
 
+
 ## How to use:
 
 1. Have a systemwide install of gmsh, for example via:

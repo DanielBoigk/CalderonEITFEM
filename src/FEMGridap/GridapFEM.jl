@@ -4,6 +4,7 @@
 #export EIT_FEM_neumann_to_dirichlet_circ, EIT_FEM_dirichlet_to_neumann_circ
 
 include("Dirichlet-to-Neumann.jl")
+include("Neumann-to-Dirichlet.jl")
 include("extract_U_Square.jl")
 include("Extract_Gradient_Square.jl")
 
