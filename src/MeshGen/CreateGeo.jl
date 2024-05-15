@@ -1,3 +1,5 @@
+export create_circle_geo, create_square_geo
+
 function create_circle_geo(cellsize::Float64=0.02)
     all = 
 "cellSize = "*string(cellsize)*";
@@ -35,7 +37,7 @@ function create_square_geo(cellsize::Float64=0.02)
     divisions = floor(Int64,2/cellsize)+1
 
     all = 
-"cellSize = "*string(cellsize)*";;
+"cellSize = "*string(cellsize)*";
 NumberOfDivisions = "*string(divisions)*";
 
 radius = 1;
@@ -51,6 +53,9 @@ Line(8) = {4, 5};  // Right edge
 Line(9) = {5, 2};  // Bottom edge
 
 Transfinite Line {6, 7, 8, 9} = NumberOfDivisions Using Progression 1; 
+
+Line Loop(10) = {6, 7, 8, 9};  // Loop around the square
+Plane Surface(11) = {10};  // Define the square surface
 
 // Define the surface as a Transfinite Surface
 Transfinite Surface {11};
