@@ -1,0 +1,20 @@
+name = "CalderonEITFEM"
+uuid = "12345678-1234-1234-1234-123456789abc"
+authors = ["Your Name <dn.boigk@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Random = "a63ad114-7e13-5084-954f-fe012c677804"
+Statistics = "10745b16-4df2-5d83-b2a7-0bd81f35774a"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
+Interpolations = "a98d9a8b-350a-50b4-92c5-3c2fd2d1fbac"
+Gridap = "56d4f2e9-7ea3-5329-ade9-d1a12072e22c"
+GridapGmsh = "eec8032f-bce2-50b4-8247-3e6f8b73f7d6"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+LineSearches = "d3d80556-e9d4-5f37-9878-2ab0fcc64255"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+SciPy = "47aef6b3-5e13-5f27-bc54-6a942c3ecf7f"
+
+[compat]
+julia = "1.6"

@@ -1,7 +1,7 @@
 # Here is the GRidap FEM solution
 
-export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann
-export EIT_FEM_neumann_to_dirichlet_circ, EIT_FEM_dirichlet_to_neumann_circ
+#export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann
+#export EIT_FEM_neumann_to_dirichlet_circ, EIT_FEM_dirichlet_to_neumann_circ
 
 include("Dirichlet-to-Neumann.jl")
 include("extract_U_Square.jl")

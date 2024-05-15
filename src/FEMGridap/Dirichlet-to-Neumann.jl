@@ -1,5 +1,7 @@
 #struct FEM_problem_DtN()
 
+export Dirichlet_to_Neumann
+
 function Dirichlet_to_Neumann(mesh,γ,b,; is_linear::Bool=true, order::Int64=1)
     domain = (-1.0, 1.0, -1.0, 1.0)
     reffe = ReferenceFE(lagrangian, Float64, order)
