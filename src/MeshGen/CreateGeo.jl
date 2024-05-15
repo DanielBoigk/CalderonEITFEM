@@ -76,7 +76,7 @@ Physical Surface(\"square\") = {11};
 Mesh 2;
 "
 
-    write("circle.geo", all)
+    write("square.geo", all)
     # Requires Gmsh installed.
-    run(`gmsh -2 circle.geo -o circle.msh`)  
+    run(`gmsh -2 square.geo -o square.msh`)  
 end

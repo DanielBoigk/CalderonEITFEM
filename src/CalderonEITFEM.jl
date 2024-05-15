@@ -23,9 +23,9 @@ module CalderonEITFEM
 
     include("MeshGen/CreateGeo.jl")
 
+    include("FEMGridap/GridapFEM.jl")
+    
     #include("Boundary/CircBoundary.jl")
-
-    #include("FEMGridap/GridapFEM.jl")
 
     #include("FEMGridap/GridapGradient.jl")
 
