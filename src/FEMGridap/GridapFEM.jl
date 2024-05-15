@@ -3,7 +3,12 @@
 export EIT_FEM_neumann_to_dirichlet, EIT_FEM_dirichlet_to_neumann
 export EIT_FEM_neumann_to_dirichlet_circ, EIT_FEM_dirichlet_to_neumann_circ
 
+include("Dirichlet-to-Neumann.jl")
+include("extract_U_Square.jl")
+include("Extract_Gradient_Square.jl")
 
+
+#=
 # Receives two mxn Matrices with on describing σ on the domain and the other one describing the neumann boundary condition 
 function EIT_FEM_neumann_to_dirichlet(σ_function,j_function, x_dim::Int64=100, y_dim::Int64=100,; order::Int64=1, solver = LUSolver())
     @time begin
@@ -161,3 +166,5 @@ function EIT_FEM_neumann_to_dirichlet_circ(σ_function,j_function,; order::Int64
   end
   return uh
 end
+
+=#

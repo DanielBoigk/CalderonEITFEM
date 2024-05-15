@@ -35,7 +35,7 @@ module CalderonEITFEM
 
     try
         using Ferrite, FerriteGmsh, SparseArrays
-        include("FerriteFEM.jl")
+        include("FEMFerrite/FerriteFEM.jl")
     catch
         println("Ferrite not installed in environment")
     end
