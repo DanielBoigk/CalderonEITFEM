@@ -15,19 +15,18 @@ end
 function extract_U_square(uh,x_dim::Int64=100,y_dim::Int64=100, ; mode = "dirichlet", l_order::Int64=1 )
     if l_order==1
         if mode == "dirichlet"
-            S = copy(uh.free_values)
-            #I don't want this thing to be somewhere completely outside:
-            S .-= Statistics.mean(S)
-            S = reshape(S, (x_dim,y_dim))
-            return S
-        else
-            # Extract Matrix Valued solution:
             Out = zeros(x_dim,y_dim)
             S = copy(uh.free_values)
     
             S = reshape(S, (x_dim-2,y_dim-2))
             Out[2:x_dim-1,2:x_dim-1]= S
-        return Out
+            return Out
+        else
+            S = copy(uh.free_values)
+            #I don't want this thing to be somewhere completely outside:
+            S .-= Statistics.mean(S)
+            S = reshape(S, (x_dim,y_dim))
+            return S
         end
     end
     return extract_U(uh,x_dim,y_dim)
