@@ -9,7 +9,7 @@ function Neumann_to_Dirichlet(mesh,γ,b,; is_linear::Bool=true, order::Int64=1)
     #Define Triangulation:
     Ω = Triangulation(mesh)
     dΩ = Measure(Ω,2)
-    Γ = BoundaryTriangulation(mesh)
+    Γ = BoundaryTriangulation(mesh, tags="boundary")
     dΓ = Measure(Γ,2) 
 
     if is_linear
