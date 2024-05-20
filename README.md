@@ -22,7 +22,7 @@ Excludes Solution using Ferrite since Gridap and Ferrite do not run in the same 
 
 ## The EIT - Forward Problem
 
-Since the Electircal Impedance Problem is an Inverse Problem we have two choices given conductivity values $\gamma$ we can calculate the operator $ \Lambda_n$mapping from neumann boundary to dirichlet boundary or the inverse operator $\Lambda_d$. 
+Since the Electircal Impedance Problem is an Inverse Problem we have two choices given conductivity values $\gamma$ we can calculate the operator $\Lambda_n$ mapping from neumann boundary to dirichlet boundary or the inverse operator $\Lambda_d$. 
 Given one of these Boundary operators we can start solving the inverse Problem which is Electrical Impedance Tomography.
 
 ### Neumann-to-Dirichlet Map
@@ -30,45 +30,44 @@ Given one of these Boundary operators we can start solving the inverse Problem w
 Given the strong formulation:
 
 $$
-\nabla\cdot(\gamma \nabla u) = 0 \;\;\forall x\in\Omega
+\nabla\cdot(\gamma \nabla u) = 0 \text{    } \forall x\in\Omega
 $$
 
 with neumann boundary condiction
 
 $$
-\frac{\partial u(x)}{\partial \vec{n}(x)} = g(x) \;\; x\in \partial \Omega 
-
-
+\frac{\partial u(x)}{\partial \vec{n}(x)} = g(x) \forall x\in \partial \Omega 
 $$
+
+such that:
 
 $$
 \int\limits_{\partial\Omega} g(x) d\mathcal{S} =0 
-
 $$
 
+The weak problem thus becomes: 
 
-
-
-
-
-
-The weak solution thus becomes: 
-
-$$ \int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = \int\limits_{\partial\Omega} v d\mathcal{S} $$
+$$ 
+\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = \int\limits_{\partial\Omega} v d\mathcal{S} \forall v \in H^{-\frac{1}{2}}(\Omega) 
+$$
 
 ### Dirichlet-to-Neumann Map
 
 Here the strong formulation is:
-$$\nabla \cdot (\gamma(x) \nabla u(x)) =0 \;\; \forall x \in \Omega $$
+$$\nabla \cdot (\gamma(x) \nabla u(x)) =0  \forall x \in \Omega $$
 with dirichlet boundary condition:
-$$u(x) = g(x) \;\; x\in \partial \Omega \;\; \forall x \in \\partial\Omega$$
+$$u(x) = g(x)   \forall x \in \\partial\Omega$$
 
 The Weak form then becomes: 
-$$ \int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = 0 \;\; \forall v \in\H^{\frac{1}{2}}(\Omega) $$
+
+$$
+\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = 0  \forall v \in H^{\frac{1}{2}}(\Omega) 
+$$
 
 ## Example for a square domain:
 
 Generates random Conductivity values of a medium: 
+
 ![Conductivity of a medium](images/conductivity.svg)
 
 and given dirichlet boundary condition:
