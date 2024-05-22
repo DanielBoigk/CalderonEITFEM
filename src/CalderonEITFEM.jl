@@ -25,6 +25,7 @@ module CalderonEITFEM
 
     include("FEMGridap/GridapFEM.jl")
     
+    include("Boundary/BoundaryPoints.jl")
     #include("Boundary/CircBoundary.jl")
 
     #include("FEMGridap/GridapGradient.jl")
