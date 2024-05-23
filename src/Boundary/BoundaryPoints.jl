@@ -90,3 +90,21 @@ mesh = MeshIO.read(file_name)
     julia_points = np.asarray(points) |> Array{Float64}
     
 =#
+
+function reorder_boundary(input::Array{Float64,2})
+    n  = size(input,1)
+    output = copy(input)
+    if mod(n , 4) == 0
+        m = Int64(n / 4)
+        output[2:m,:]       = input[5:m+3,:] 
+        output[m+2:2*m,:]   = input[m+4:2*m+2,:]
+        output[2*m+2:3*m,:] = input[2*m+3:3*m+1,:]
+
+        output[m+1,:] = input[2,:]
+        output[2*m+1,:] = input[3,:]
+        output[3*m+1,:] = input[4,:]
+    else
+        println("The case I tried to avoid happened. TRy to expand reorder function for boundary.")
+    end
+    return output
+end
