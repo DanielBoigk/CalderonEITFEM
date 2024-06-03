@@ -40,6 +40,15 @@ function gradient_atPoints(u, coordinates)
     return [Grid_Gradient[i][j] for i in 1:n, j in 1:2]
 end
 
+# Need to construct n_grad_u via ∇(u) ⋅ n_Γ before and pass it as an argument: returns vector with normal gradients at boundary given suitable coordinates
+function normals_atBoundary(n_grad_u, coordinates)
+    n = size(coordinates,1)
+    grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in 1:n]
+    @time begin
+    Grid_Normals = n_grad_u.(grid_points)
+    end
+    return [Grid_Normals[i] for i in 1:n]
+end
 
 # Will extract gradient given FEM solution u on domain [0,1]×[0,1]
 #=function extract_gradient(u, x_dim::Int64=100, y_dim::Int64=100)
