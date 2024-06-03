@@ -1,20 +1,24 @@
 
 export extract_at_coordinates
 
-function extract_at_coordinates(u, coordinates, extract_gradient::Bool =false)
+function extract_at_coordinates(u, coordinates, extract_gradient::Bool =false, try_catch::Bool = false)
+    
+    
+    if !try_catch
 
-    grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in 1:n]
-    
-    if extract_gradient
-        grad_u= ∇(u)
-        # This is the really really bad part:
-        @time begin
-        Grid_Gradient = grad_u.(grid_points)
+        if extract_gradient
+            return gradient_atPoints(u, coordinates)
+        else 
+            n = size(coordinates,1)
+            grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in 1:n]
+            grid_points = [Point((coordinates[i,1], coordinates[i,2])) for i in 1:n]
+            @time begin
+                Grid_U = u.(grid_points)
+            end
+            return [Grid_U[i][j] for i in 1:n, j in 1:2]
         end
-        G = [Grid_Gradient[x,y][i] for x in 1:x_dim, y in 1:y_dim, i in 1:2]
-        return G
-    
-    else 
-    
+    else
+
+        println!("To be implemented")
     end
 end

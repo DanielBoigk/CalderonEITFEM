@@ -94,8 +94,8 @@ mesh = MeshIO.read(file_name)
 function reorder_boundary(input::Array{Float64,2})
     n  = size(input,1)
     output = copy(input)
-    if mod(n , 4) == 0
-        m = Int64(n / 4)
+    if n % 4 == 0
+        m = n ÷ 4
         output[2:m,:]       = input[5:m+3,:] 
         output[m+2:2*m,:]   = input[m+4:2*m+2,:]
         output[2*m+2:3*m,:] = input[2*m+3:3*m+1,:]
@@ -108,3 +108,5 @@ function reorder_boundary(input::Array{Float64,2})
     end
     return output
 end
+
+

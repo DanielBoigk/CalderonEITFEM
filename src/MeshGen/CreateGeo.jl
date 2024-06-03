@@ -19,7 +19,7 @@ Plane Surface(11) = {10};
 // Mark the boundary of the circular mesh
 Physical Line(\"boundary\") = {6, 7, 8, 9};
 // Now also add points to the same \"Boundary\" physical group
-Physical Point(\"boundary\") = {2, 3, 4, 5};
+Physical Point(\"boundary_points\") = {2, 3, 4, 5};
 
 Physical Surface(\"disk\") = {11};
 // Mesh generation commands (if needed)
@@ -68,7 +68,7 @@ Physical Line(\"top\") = {7};
 Physical Line(\"right\") = {8};
 Physical Line(\"bottom\") = {9};
 // Now also add points to the same \"Boundary\" physical group
-Physical Point(\"boundary\") = {2, 3, 4, 5};
+Physical Point(\"boundary_points\") = {2, 3, 4, 5};
 
 Physical Surface(\"square\") = {11};  
 
