@@ -20,7 +20,7 @@ function Dirichlet_to_Neumann(mesh,γ,b,; is_linear::Bool=true, order::Int64=1)
         # And Solve
         lop = AffineFEOperator(a,l,U,V)
         lsolver = LUSolver()
-        ls= LinearFESolver(lsolver)
+        ls = LinearFESolver(lsolver)
         @time begin
             luh = solve(ls,lop)
         end

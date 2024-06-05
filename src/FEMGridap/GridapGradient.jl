@@ -4,7 +4,7 @@
 #export Gradient_to_Normal #, gen_EIT_training_sqr
 
 export extract_gradient #, extract_gradient_border
-export gradient_atPoints
+export gradient_atPoints, normals_atBoundary
 #=
 function Gradient_to_Normal(G::Array{Float64, 3})
     n = size(G)[1]
