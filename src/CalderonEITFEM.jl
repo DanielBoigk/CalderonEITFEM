@@ -1,7 +1,7 @@
 module CalderonEITFEM
 
     using Random, Statistics, LinearAlgebra, Images, Interpolations
-    using Gridap, GridapGmsh, ForwardDiff
+    using Gridap, GridapGmsh, ForwardDiff, SparseArrays
     using LineSearches: BackTracking
     
     #Since I need to call some python functions:
@@ -35,7 +35,7 @@ module CalderonEITFEM
     #include("SqrTrain.jl")
 
     try
-        using Ferrite, FerriteGmsh, SparseArrays
+        using Ferrite, FerriteGmsh
         include("FEMFerrite/FerriteFEM.jl")
     catch
         println("Ferrite not installed in environment")
