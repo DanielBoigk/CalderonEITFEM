@@ -42,13 +42,13 @@ $$
 such that:
 
 $$
-\int\limits_{\partial\Omega} g(x) d\mathcal{S} =0 
+\int\limits_{\partial\Omega} g(x) d\partial\Omega =0 
 $$
 
 The weak problem thus becomes: 
 
 $$ 
-\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = \int\limits_{\partial\Omega} v d\mathcal{S} \forall v \in H^{-\frac{1}{2}}(\Omega) 
+\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = \int\limits_{\partial\Omega} v d\mathcal{S} \forall v \in H^{-\frac{1}{2}}(\partial\Omega) 
 $$
 
 ### Dirichlet-to-Neumann Map
@@ -61,7 +61,7 @@ $$u(x) = g(x)   \forall x \in \\partial\Omega$$
 The Weak form then becomes: 
 
 $$
-\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = 0  \forall v \in H^{\frac{1}{2}}(\Omega) 
+\int\limits_\Omega \gamma\nabla u\cdot\nabla v dx = 0  \forall v \in H^{\frac{1}{2}}(\partial\Omega) 
 $$
 
 ## Example for a square domain:
